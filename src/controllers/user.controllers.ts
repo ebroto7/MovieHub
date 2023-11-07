@@ -11,5 +11,5 @@ export const updateUser = (req: Request, res: Response) => {
     res.status(200).send("User updated")
 }
 export const deleteUser = (req: Request, res: Response) => {
-    res.status(200).send("User delete")
+    res.status(200).send("User deleted")
 }

@@ -1,7 +1,7 @@
 import app from "./server";
-import userRoutes from './routes/user.routes';
+import config from "./config/config";
 
-const PORT: 8080 = 8080
+const PORT = config.app.PORT
 
 app.listen(PORT, () => {
     console.log(`server is running on port ${PORT}`)
