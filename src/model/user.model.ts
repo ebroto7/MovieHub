@@ -24,6 +24,9 @@ const userSchema = new Schema<IUserDocument>({
         required: [true, 'Password is required'],
         unique: true
     },
+    movies: {
+        type: [String]
+    }
 },
     { timestamps: true, versionKey: false }
 )

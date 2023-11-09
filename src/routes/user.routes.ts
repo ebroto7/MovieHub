@@ -3,7 +3,8 @@ import { getAllUsers,
          deleteUser, 
          createUser, 
          updateUser,
-         getUserById
+         getUserById,
+         addMovieToUser
         } from '../controllers/user.controllers'
 
 
@@ -13,6 +14,7 @@ userRoutes.get("/", getAllUsers)
 userRoutes.get("/:userId", getUserById)
 
 userRoutes.patch("/:userId", updateUser)
+userRoutes.put("/:userId", addMovieToUser)
 userRoutes.delete("/:userId", deleteUser)
 userRoutes.post("/", createUser)
 

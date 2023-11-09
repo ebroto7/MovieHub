@@ -1,0 +1,26 @@
+[
+    {
+        "title": "Interestellar",
+        "description": "Un grupo de científicos y exploradores, encabezados por Cooper, se embarcan en un viaje espacial para encontrar un lugar con las condiciones necesarias para reemplazar a la Tierra y comenzar una nueva vida allí.",
+        "genre": "Fiction",
+        "year": "2014",
+        "duration": "169",
+        "rated": "7.9"
+    },
+    {
+        "title": "Tennet",
+        "description": "Una acción épica que gira en torno al espionaje internacional, los viajes en el tiempo y la evolución, en la que un agente secreto debe prevenir la Tercera Guerra Mundial.",
+        "genre": "Fiction",
+        "year": "2020",
+        "duration": "150",
+        "rated": "6.3"
+    },
+    {
+        "title": "Oppenheimer",
+        "description": "El físico J Robert Oppenheimer trabaja con un equipo de científicos durante el Proyecto Manhattan, que condujo al desarrollo de la bomba atómica.",
+        "genre": "suspense",
+        "year": "2023",
+        "duration": "180",
+        "rated": "7.6"
+    }
+]
