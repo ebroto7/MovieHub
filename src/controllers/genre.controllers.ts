@@ -1,6 +1,6 @@
 import { Response, Request } from "express";
 
-// ejemplos de función
+
 export const getAllGenres = (req: Request, res: Response) => {
     res.status(200).send("Get all genre")
 }

@@ -1,6 +1,5 @@
 import { Response, Request } from "express";
 
-// ejemplos de función
 export const getAllMovies = (req: Request, res: Response) => {
     res.status(200).send("Get all Movie")
 }
