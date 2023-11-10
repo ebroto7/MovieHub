@@ -1,0 +1,27 @@
+import { Document, model, Schema } from "mongoose";
+
+interface IGenreDocument extends Document {
+    name: string,
+   
+    movies?: string[],
+
+    createdAt?: Date,
+    updatedAt?: Date
+}
+
+const genreSchema = new Schema<IGenreDocument>({
+    name: {
+        type: String,
+        required: [true, 'Name is required']
+    },
+
+    movies: {
+        type: [String]
+    }
+},
+    { timestamps: true, versionKey: false }
+)
+
+const GenreModel = model<IGenreDocument>('Genre', genreSchema)
+
+export default GenreModel

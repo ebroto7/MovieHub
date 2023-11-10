@@ -50,15 +50,15 @@ export const updateMovie = async (req: Request, res: Response) => {
 export const deleteMovie = async (req: Request, res: Response) => {
     const { movieId, title } = req.params
 
-    // try {
-    //     await MovieModel.findByIdAndDelete({_id: movieId })
-    //     res.status(200).send("Movie deleted "+title)
-    // } catch (error) {
-    //     res.status(500).json(error)
+    try {
+        await MovieModel.findByIdAndDelete({_id: movieId })
+        res.status(200).send("Movie deleted "+title)
+    } catch (error) {
+        res.status(500).json(error)
 
-    // }
+    }
 
-    res.status(500).send("movie deleted ")
+    // res.status(500).send("movie deleted ")
 
 }
 
