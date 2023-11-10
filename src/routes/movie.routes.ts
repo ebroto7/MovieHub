@@ -10,7 +10,9 @@ const movieRoutes = Router()
 
 movieRoutes.get("/", getAllMovies)
 movieRoutes.get("/:movieId", getMovieById)
-movieRoutes.post("/", createMovie)
+
+movieRoutes.post("/:userId", createMovie)
+
 movieRoutes.patch("/:movieId", updateMovie)
 movieRoutes.delete("/:movieId", deleteMovie)
 

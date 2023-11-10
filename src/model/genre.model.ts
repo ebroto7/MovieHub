@@ -1,6 +1,6 @@
 import { Document, model, Schema } from "mongoose";
 
-interface IGenreDocument extends Document {
+export interface IGenreDocument extends Document {
     name: string,
    
     movies?: string[],
@@ -12,9 +12,9 @@ interface IGenreDocument extends Document {
 const genreSchema = new Schema<IGenreDocument>({
     name: {
         type: String,
-        required: [true, 'Name is required']
+        required: [true, 'Genre name is required'],
+        unique: true
     },
-
     movies: {
         type: [String]
     }

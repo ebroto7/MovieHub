@@ -42,7 +42,7 @@ export const deleteGenre = async (req: Request, res: Response) => {
 
     try {
         await GenreModel.findByIdAndDelete({ _id: genreId })
-        res.status(200).send("Genre deleted")
+        res.status(204).send("Genre deleted")
     } catch (error) {
         res.status(500).json(error)
 
