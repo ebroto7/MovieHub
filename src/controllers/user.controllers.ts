@@ -17,7 +17,10 @@ const tryCatchHandler = (req: Request, res: Response, succesStatus: number , get
 export const getAllUsers = async (req: Request, res: Response) => {
 
 
-    tryCatchHandler(req, res, 200, await UserModel.find().populate('movies') )
+    tryCatchHandler(req, res, 200, await UserModel.find()
+                        .populate('movies') 
+                        .populate({path: 'movies.genre' })
+                    )
 
 
     // try {
@@ -33,11 +36,15 @@ export const getAllUsers = async (req: Request, res: Response) => {
 export const getUserById = async (req: Request, res: Response) => {
     const { userId } = req.params
 
-    tryCatchHandler(req, res, 200, await UserModel.findById({ _id: userId }).populate('movies') )
+    tryCatchHandler(req, res, 200, await UserModel.findById({ _id: userId })
+                        .populate('movies')
+                        .populate('movies.genre') 
+                    )
 
 
     // try {
     //     const user = await UserModel.findById({ _id: userId })
+        
     //     res.status(200).json(user)
     // } catch (error) {
     //     res.status(500).json(error)

@@ -6,7 +6,8 @@ import { IGenreDocument } from "../model/genre.model";
 type ModelDocuments = IUserDocument | IUserDocument[] | IMovieDocument | IMovieDocument[] | IGenreDocument | IGenreDocument[] 
 
 export const tryCatchHandler = (req: Request, res: Response, succesStatus: number , getData: ModelDocuments | null ) => {
-   
+    // export const tryCatchHandler = ((req: Request, res: Response, succesStatus: number) => void ) => {
+
     try {
         const data = getData
         res.status(succesStatus).json(data)

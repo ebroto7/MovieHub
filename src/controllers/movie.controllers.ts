@@ -1,10 +1,14 @@
 import { Response, Request } from "express";
 import MovieModel from '../model/movie.model'
 import UserModel from "../model/user.model";
+import { tryCatchHandler } from "../utils/tryCatchHandler";
+import GenreModel from "../model/genre.model";
 
 export const getAllMovies = async (req: Request, res: Response) => {
+
     try {
         const movies = await MovieModel.find()
+                              .populate('genre') 
         res.status(201).json(movies)
     } catch (error) {
         res.status(500).json(error)
@@ -14,6 +18,7 @@ export const getMovieById = async (req: Request, res: Response) => {
     const { movieId } = req.params
     try {
         const movie = await MovieModel.findById({ _id: movieId })
+
         res.status(200).json(movie)
     } catch (error) {
         res.status(500).json(error)
@@ -22,17 +27,19 @@ export const getMovieById = async (req: Request, res: Response) => {
 export const createMovie = async (req: Request, res: Response) => {
     const { title, description, genre, year, duration, rated } = req.body
     const { userId } = req.params
-   
     try {
         if (!title || !description || !genre || !year || !duration || !rated) throw new Error("missing fields")
         const newMovie = await MovieModel.create({ title, description, genre, year, duration, rated, userId })
-        console.log(newMovie)
         await UserModel.findByIdAndUpdate(
             { _id: userId },
             {
                 $push: { movies: newMovie._id }
             })
-
+        await GenreModel.findOneAndUpdate(
+            { name: newMovie.genre },
+            {
+                $push: { movies: newMovie._id }
+            })
         res.status(201).json(newMovie)
     } catch (error) {
         res.status(500).json(error)

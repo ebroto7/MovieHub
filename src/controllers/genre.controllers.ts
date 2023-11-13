@@ -4,20 +4,28 @@ import GenreModel from "../model/genre.model";
 
 export const getAllGenres = async (req: Request, res: Response) => {
     try {
-        const genres = await GenreModel.find()
+        const genres = await GenreModel.find().populate('movies') 
+
         res.status(200).json(genres)
     } catch (error) {
         res.status(500).json(error)
     }
 }
 export const getGenreById = async (req: Request, res: Response) => {
-    res.status(200).send("Genre founded")
+    const { genreId } = req.params
+    try {
+        const genre = await GenreModel.findById({ _id: genreId })
+        res.status(200).json(genre)
+    } catch (error) {
+        res.status(500).json(error)
+    }
 }
 export const createGenre = async (req: Request, res: Response) => {
     const { name } = req.body
     try {
         if (!name ) throw new Error("missing fields")
         const newUser = await GenreModel.create({ name })
+
         res.status(201).json(newUser)
     } catch (error) {
         res.status(500).json(error)

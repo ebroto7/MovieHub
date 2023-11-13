@@ -15,9 +15,10 @@ const genreSchema = new Schema<IGenreDocument>({
         required: [true, 'Genre name is required'],
         unique: true
     },
-    movies: {
-        type: [String]
-    }
+    movies: [{
+        type: Schema.Types.ObjectId,
+        ref: 'Movies'
+    }]
 },
     { timestamps: true, versionKey: false }
 )

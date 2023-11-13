@@ -18,9 +18,17 @@
     {
         "title": "Oppenheimer",
         "description": "El físico J Robert Oppenheimer trabaja con un equipo de científicos durante el Proyecto Manhattan, que condujo al desarrollo de la bomba atómica.",
-        "genre": "suspense",
+        "genre": "Thriller",
         "year": "2023",
         "duration": "180",
         "rated": "7.6"
+    },
+    {
+        "title": "2001: A Space Odyssey",
+        "description": "La película de ciencia ficción por antonomasia de la historia del cine narra los diversos periodos de la historia de la humanidad, no sólo del pasado, sino también del futuro.",
+        "genre": "Science-fiction",
+        "year": "1968",
+        "duration": "149",
+        "rated": "7.8"
     }
 ]

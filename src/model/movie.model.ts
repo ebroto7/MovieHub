@@ -1,4 +1,5 @@
 import { Document, model, Schema } from "mongoose";
+import GenreModel, { IGenreDocument } from "./genre.model";
 
 export interface IMovieDocument extends Document {
     title: string,
@@ -15,6 +16,8 @@ export interface IMovieDocument extends Document {
 
     comments?: string[]
 
+    createdBy: string
+
     createdAt?: Date,
     updatedAt?: Date
 }
@@ -30,10 +33,17 @@ const movieSchema = new Schema<IMovieDocument>({
         required: [true, 'Description is required'],
         unique: true
     },
-    genre: {
+    genre:
+        {
         type: String,
         required: [true, 'Genre is required']
-    },
+
+        },
+        // [{
+        //     type: Schema.Types.ObjectId,
+        //     ref: 'Genre',
+        //     required: [true, 'Genre is required']
+        // }],
     director: {
         type: String,
     },
@@ -54,10 +64,14 @@ const movieSchema = new Schema<IMovieDocument>({
     },
     rated: {
         type: Number,
-        required: [true, 'Raated is required']
+        required: [true, 'Rated is required']
     },
     comments: {
         type: String,
+    },
+    createdBy: {
+        type: String,
+        required: [true, 'User creator is required']
     }
 },
     { timestamps: true, versionKey: false }
