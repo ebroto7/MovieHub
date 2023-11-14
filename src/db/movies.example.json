@@ -30,6 +30,16 @@
         "year": "1968",
         "duration": "149",
         "rated": "7.8"
+    }, 
+    {
+        "title": "The Marvels",
+        "description": "La Capitana Marvel ha recuperado su identidad y se ha vengado de la Inteligencia Suprema. Cuando sus deberes la envían a un agujero de gusano, sus poderes se enredan con los de otros dos superhéroes para formar a los Marvel.",
+        "genreId": "Adventure",
+        "year": "2023",
+        "duration": "105",
+        "rated": "5.2",
+        "poster": "https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.marvel.com%2Farticles%2Fmovies%2Fmarvel-studios-the-marvels-imax-poster&psig=AOvVaw17EExvt_Z6jiMpInAXFON8&ust=1700073219618000&source=images&cd=vfe&ved=0CBEQjRxqFwoTCMDXrbWQxIIDFQAAAAAdAAAAABAE"
     }
+
 ]
 
