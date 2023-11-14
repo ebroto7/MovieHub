@@ -14,7 +14,7 @@ export const getAllGenres = async (req: Request, res: Response) => {
 export const getGenreById = async (req: Request, res: Response) => {
     const { genreId } = req.params
     try {
-        const genre = await GenreModel.findById({ _id: genreId })
+        const genre = await GenreModel.findById({ _id: genreId }).populate('movies') 
         res.status(200).json(genre)
     } catch (error) {
         res.status(500).json(error)

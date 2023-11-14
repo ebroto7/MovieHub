@@ -69,10 +69,10 @@ const movieSchema = new Schema<IMovieDocument>({
     comments: {
         type: String,
     },
-    createdBy: {
-        type: String,
-        required: [true, 'User creator is required']
-    }
+    // createdBy: {
+    //     type: String,
+    //     required: [true, 'User creator is required']
+    // }
 },
     { timestamps: true, versionKey: false }
 )
