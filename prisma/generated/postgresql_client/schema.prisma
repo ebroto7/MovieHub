@@ -1,6 +1,8 @@
 // This is your Prisma schema file,
 // learn more about it in the docs: https://pris.ly/d/prisma-schema
 
+// npx prisma migrate dev --schema=./prisma/postgres.prisma
+
 generator client {
     provider = "prisma-client-js"
     output   = "./generated/postgresql_client"
@@ -8,7 +10,7 @@ generator client {
 
 datasource db {
     provider = "postgresql"
-    url      = env("MONGO_DB_URI")
+    url      = env("POSTGRES_DATABASE_URL")
 }
 
 model User {

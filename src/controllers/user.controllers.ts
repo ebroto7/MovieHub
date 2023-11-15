@@ -2,6 +2,7 @@ import { Response, Request, NextFunction } from "express";
 import UserModel from "../model/user.model";
 import { IUserDocument } from "../model/user.model";
 import { prismaClient } from "../db/client"
+import { convertToType } from "../utils/convertToType";
 
 export const getAllUsers = async (req: Request, res: Response) => {
 
@@ -23,7 +24,7 @@ export const getUserById = async (req: Request, res: Response) => {
 
     try {
         const allUsers = await prismaClient.user.findUnique({
-            where: { id: userId },
+            where: { id: convertToType(userId) }, 
             include: {
                 movies: true
             }
@@ -55,7 +56,7 @@ export const updateUser = async (req: Request, res: Response) => {
 
     try {
         const user = await prismaClient.user.update({
-            where: { id: userId },
+            where: { id: convertToType(userId) }, 
             data: { name, email, movies }
         })
         res.status(201).json(user)
@@ -67,9 +68,10 @@ export const updateUser = async (req: Request, res: Response) => {
 export const deleteUser = async (req: Request, res: Response) => {
     const { userId } = req.params
 
+
     try {
         await prismaClient.user.delete({
-            where: { id: userId }
+            where:  convertToType(userId) 
         })
         res.status(204).send("user deleted")
     } catch (error) {
