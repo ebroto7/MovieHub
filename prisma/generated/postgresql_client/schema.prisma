@@ -1,0 +1,65 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+    output   = "./generated/postgresql_client"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("MONGO_DB_URI")
+}
+
+model User {
+    id       Int @id @default(autoincrement()) @map("_id") 
+
+    email    String @unique
+    name     String @unique
+    password String @unique
+
+    movies Movie[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("users")
+}
+
+model Movie {
+    id          Int @id @default(autoincrement()) @map("_id") 
+
+    title       String @unique
+    description String @unique
+    year        String
+
+    director String?
+    stars    String?
+    duration String?
+    rated    String?
+    poster   String?  @unique
+    comments String[]
+
+    genreId Int? 
+    Genre   Genre?  @relation(fields: [genreId], references: [id], onDelete: Cascade)
+
+    userId Int
+    User   User?  @relation(fields: [userId], references: [id])
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("movies")
+}
+
+model Genre {
+    id   Int @id @default(autoincrement()) @map("_id") 
+    name String
+
+    movies Movie[]
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("genres")
+}

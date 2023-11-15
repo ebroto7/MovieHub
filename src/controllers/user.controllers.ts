@@ -1,12 +1,12 @@
 import { Response, Request, NextFunction } from "express";
 import UserModel from "../model/user.model";
 import { IUserDocument } from "../model/user.model";
-import prisma from "../db/client"
+import { prismaClient } from "../db/client"
 
 export const getAllUsers = async (req: Request, res: Response) => {
 
     try {
-        const allUsers = await prisma.user.findMany({
+        const allUsers = await prismaClient.user.findMany({
             include: {
                 movies: true
             }
@@ -22,7 +22,7 @@ export const getUserById = async (req: Request, res: Response) => {
     const { userId } = req.params
 
     try {
-        const allUsers = await prisma.user.findUnique({
+        const allUsers = await prismaClient.user.findUnique({
             where: { id: userId },
             include: {
                 movies: true
@@ -40,7 +40,7 @@ export const createUser = async (req: Request, res: Response, next: NextFunction
     const { name, email, password } = req.body
 
     try {
-        const newUser = await prisma.user.create({
+        const newUser = await prismaClient.user.create({
             data: { name, email, password }
         })
         res.status(201).json(newUser)
@@ -54,7 +54,7 @@ export const updateUser = async (req: Request, res: Response) => {
     const { name, email, movies } = req.body
 
     try {
-        const user = await prisma.user.update({
+        const user = await prismaClient.user.update({
             where: { id: userId },
             data: { name, email, movies }
         })
@@ -68,7 +68,7 @@ export const deleteUser = async (req: Request, res: Response) => {
     const { userId } = req.params
 
     try {
-        await prisma.user.delete({
+        await prismaClient.user.delete({
             where: { id: userId }
         })
         res.status(204).send("user deleted")

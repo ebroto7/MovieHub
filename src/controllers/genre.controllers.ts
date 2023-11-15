@@ -1,11 +1,12 @@
 import { Response, Request } from "express";
 import GenreModel from "../model/genre.model";
-import prisma from "../db/client";
+import { prismaClient } from "../db/client";
+import { convertToType } from "../utils/convertToType";
 
 
 export const getAllGenres = async (req: Request, res: Response) => {
     try {
-        const genres = await prisma.genre.findMany({
+        const genres = await prismaClient.genre.findMany({
             include: {
                 movies: true
             }
@@ -19,7 +20,7 @@ export const getAllGenres = async (req: Request, res: Response) => {
 export const getGenreById = async (req: Request, res: Response) => {
     const { genreId } = req.params
     try {
-        const genre = await prisma.genre.findUnique({
+        const genre = await prismaClient.genre.findUnique({
             where: { id: genreId },
             include: {
                 movies: true
@@ -46,7 +47,7 @@ export const updateGenre = async (req: Request, res: Response) => {
     const { name, movies } = req.body
     try {
         const user = await GenreModel.findByIdAndUpdate(
-            { _id: genreId },
+            { _id: convertToType(genreId) },
             { $set: { name: name, movies: movies } },
             { new: true }
         )
@@ -60,7 +61,7 @@ export const deleteGenre = async (req: Request, res: Response) => {
     const { genreId } = req.params
 
     try {
-        await GenreModel.findByIdAndDelete({ _id: genreId })
+        await GenreModel.findByIdAndDelete({ _id: convertToType(genreId) })
         res.status(204).send("Genre deleted")
     } catch (error) {
         res.status(500).json(error)

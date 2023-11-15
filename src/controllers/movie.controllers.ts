@@ -3,12 +3,12 @@ import MovieModel from '../model/movie.model'
 import UserModel from "../model/user.model";
 // import { tryCatchHandler } from "../utils/tryCatchHandler";
 import GenreModel from "../model/genre.model";
-import prisma from "../db/client";
+import { prismaClient } from "../db/client";
 
 export const getAllMovies = async (req: Request, res: Response) => {
 
     try {
-        const movies = await prisma.movie.findMany()
+        const movies = await prismaClient.movie.findMany()
 
         res.status(201).json(movies)
     } catch (error) {
@@ -18,7 +18,7 @@ export const getAllMovies = async (req: Request, res: Response) => {
 export const getMovieById = async (req: Request, res: Response) => {
     const { movieId } = req.params
     try {
-        const movie = await prisma.movie.findUnique({
+        const movie = await prismaClient.movie.findUnique({
             where: { id: movieId }
         })
 
@@ -32,7 +32,7 @@ export const createMovie = async (req: Request, res: Response) => {
         year, poster, duration, rated, comments } = req.body
     const { userId } = req.params
     try {
-        const newMovie = await prisma.movie.create({
+        const newMovie = await prismaClient.movie.create({
             data: {
                 title, description, year, director, stars, duration, rated, poster, comments,
                 Genre: { connect: { id: genreId } },
@@ -50,7 +50,7 @@ export const updateMovie = async (req: Request, res: Response) => {
         year, poster, duration, rated, comments } = req.body
 
     try {
-        const movie = await prisma.movie.update({
+        const movie = await prismaClient.movie.update({
             where: { id: movieId },
             data: {
                 title, description, director, stars, genreId,
@@ -67,7 +67,7 @@ export const deleteMovie = async (req: Request, res: Response) => {
     const { movieId, title } = req.params
 
     try {
-        await prisma.movie.delete({
+        await prismaClient.movie.delete({
             where: { id: movieId }
         })
         res.status(204).send("Movie deleted " + title)
