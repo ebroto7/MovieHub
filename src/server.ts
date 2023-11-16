@@ -2,9 +2,11 @@ import express from 'express';
 import userRoutes from './routes/user.routes';
 import movieRoutes from './routes/movie.routes';
 import genreRoutes from './routes/genre.routes';
+const cors = require("cors")
 
 const app = express()
 app.use(express.json())
+app.use(cors())
 
 
 app.use("/user", userRoutes)
