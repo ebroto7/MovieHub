@@ -21,14 +21,14 @@ export const getGenreById = async (req: Request, res: Response) => {
     const { genreId } = req.params
     try {
         const genre = await prismaClient.genre.findUnique({
-            where: { id: genreId },
+            where: { _id: convertToType(genreId) },
             include: {
                 movies: true
             }
         })
         res.status(200).json(genre)
     } catch (error) {
-        res.status(500).json(error)
+        res.status(500).json( {error, message: "Can get genres"})
     }
 }
 export const createGenre = async (req: Request, res: Response) => {

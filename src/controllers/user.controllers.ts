@@ -51,6 +51,7 @@ export const createUserOrLogin = async (req: Request, res: Response) => {
         });
         if (existingUser) {
             res.status(409).json(existingUser);
+            // res.status(409).json({existingUser, message: "this user already exists"});
         } else {
             const newUser = await prismaClient.user.create({
                 data: { name, email },

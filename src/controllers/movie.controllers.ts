@@ -4,6 +4,7 @@ import UserModel from "../model/user.model";
 // import { tryCatchHandler } from "../utils/tryCatchHandler";
 import GenreModel from "../model/genre.model";
 import { prismaClient } from "../db/client";
+import { convertToType } from "../utils/convertToType";
 
 export const getAllMovies = async (req: Request, res: Response) => {
 
@@ -18,9 +19,12 @@ export const getAllMovies = async (req: Request, res: Response) => {
 export const getMovieById = async (req: Request, res: Response) => {
     const { movieId } = req.params
     try {
-        const movie = await prismaClient.movie.findUnique({
-            where: { id: movieId }
-        })
+        const movie = await prismaClient.movies.findUnique({
+            where: {
+                id: convertToType(movieId),
+            }
+            
+        });
 
         res.status(200).json(movie)
     } catch (error) {
