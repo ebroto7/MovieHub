@@ -35,7 +35,7 @@ export const createGenre = async (req: Request, res: Response) => {
     const { name } = req.body
     try {
         if (!name) throw new Error("missing fields")
-        const newUser = await GenreModel.create({ name })
+        const newUser = await prismaClient.genre.create({ name })
 
         res.status(201).json(newUser)
     } catch (error) {
@@ -46,11 +46,10 @@ export const updateGenre = async (req: Request, res: Response) => {
     const { genreId } = req.params
     const { name, movies } = req.body
     try {
-        const user = await GenreModel.findByIdAndUpdate(
-            { _id: convertToType(genreId) },
-            { $set: { name: name, movies: movies } },
-            { new: true }
-        )
+        const user = await prismaClient.genre.update({
+         where: { _id: convertToType(genreId) },
+         data:   { name: name, movies: movies },
+    })
         res.status(201).json(user)
     } catch (error) {
         res.status(500).json(error)
@@ -61,7 +60,9 @@ export const deleteGenre = async (req: Request, res: Response) => {
     const { genreId } = req.params
 
     try {
-        await GenreModel.findByIdAndDelete({ _id: convertToType(genreId) })
+        await prismaClient.user.delete({
+            where: { id: convertToType(genreId) }, 
+        })
         res.status(204).send("Genre deleted")
     } catch (error) {
         res.status(500).json(error)

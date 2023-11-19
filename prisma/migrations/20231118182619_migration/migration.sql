@@ -3,7 +3,6 @@ CREATE TABLE "users" (
     "_id" SERIAL NOT NULL,
     "email" TEXT NOT NULL,
     "name" TEXT NOT NULL,
-    "password" TEXT NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
 
@@ -45,9 +44,6 @@ CREATE UNIQUE INDEX "users_email_key" ON "users"("email");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "users_name_key" ON "users"("name");
-
--- CreateIndex
-CREATE UNIQUE INDEX "users_password_key" ON "users"("password");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "movies_title_key" ON "movies"("title");

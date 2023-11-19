@@ -1,9 +1,10 @@
 import {Router} from 'express'  
 import { getAllUsers, 
          deleteUser, 
-         createUser, 
+        //  createUser, 
          updateUser,
          getUserById,
+         createUserOrLogin
         } from '../controllers/user.controllers'
 import { validateName } from "../middleware/validateName.middleware";
 
@@ -15,6 +16,9 @@ userRoutes.get("/:userId", getUserById)
 
 userRoutes.patch("/:userId", updateUser)
 userRoutes.delete("/:userId", deleteUser)
-userRoutes.post("/", validateName, createUser)
+// userRoutes.post("/", validateName, createUser)
+
+userRoutes.post("/", createUserOrLogin);
+
 
 export default userRoutes

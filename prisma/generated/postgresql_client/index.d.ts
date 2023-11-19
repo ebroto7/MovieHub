@@ -1111,7 +1111,6 @@ export namespace Prisma {
     id: number | null
     email: string | null
     name: string | null
-    password: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1120,7 +1119,6 @@ export namespace Prisma {
     id: number | null
     email: string | null
     name: string | null
-    password: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1129,7 +1127,6 @@ export namespace Prisma {
     id: number
     email: number
     name: number
-    password: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1148,7 +1145,6 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
-    password?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1157,7 +1153,6 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
-    password?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1166,7 +1161,6 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
-    password?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1262,7 +1256,6 @@ export namespace Prisma {
     id: number
     email: string
     name: string
-    password: string
     createdAt: Date
     updatedAt: Date
     _count: UserCountAggregateOutputType | null
@@ -1290,7 +1283,6 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
-    password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     movies?: boolean | User$moviesArgs<ExtArgs>
@@ -1301,7 +1293,6 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
-    password?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
@@ -1321,7 +1312,6 @@ export namespace Prisma {
       id: number
       email: string
       name: string
-      password: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["user"]>
@@ -1722,7 +1712,6 @@ export namespace Prisma {
     readonly id: FieldRef<"User", 'Int'>
     readonly email: FieldRef<"User", 'String'>
     readonly name: FieldRef<"User", 'String'>
-    readonly password: FieldRef<"User", 'String'>
     readonly createdAt: FieldRef<"User", 'DateTime'>
     readonly updatedAt: FieldRef<"User", 'DateTime'>
   }
@@ -4147,7 +4136,6 @@ export namespace Prisma {
     id: 'id',
     email: 'email',
     name: 'name',
-    password: 'password',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4280,7 +4268,6 @@ export namespace Prisma {
     id?: IntFilter<"User"> | number
     email?: StringFilter<"User"> | string
     name?: StringFilter<"User"> | string
-    password?: StringFilter<"User"> | string
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     movies?: MovieListRelationFilter
@@ -4290,7 +4277,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     movies?: MovieOrderByRelationAggregateInput
@@ -4300,20 +4286,18 @@ export namespace Prisma {
     id?: number
     email?: string
     name?: string
-    password?: string
     AND?: UserWhereInput | UserWhereInput[]
     OR?: UserWhereInput[]
     NOT?: UserWhereInput | UserWhereInput[]
     createdAt?: DateTimeFilter<"User"> | Date | string
     updatedAt?: DateTimeFilter<"User"> | Date | string
     movies?: MovieListRelationFilter
-  }, "id" | "email" | "name" | "password">
+  }, "id" | "email" | "name">
 
   export type UserOrderByWithAggregationInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: UserCountOrderByAggregateInput
@@ -4330,7 +4314,6 @@ export namespace Prisma {
     id?: IntWithAggregatesFilter<"User"> | number
     email?: StringWithAggregatesFilter<"User"> | string
     name?: StringWithAggregatesFilter<"User"> | string
-    password?: StringWithAggregatesFilter<"User"> | string
     createdAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"User"> | Date | string
   }
@@ -4495,7 +4478,6 @@ export namespace Prisma {
   export type UserCreateInput = {
     email: string
     name: string
-    password: string
     createdAt?: Date | string
     updatedAt?: Date | string
     movies?: MovieCreateNestedManyWithoutUserInput
@@ -4505,7 +4487,6 @@ export namespace Prisma {
     id?: number
     email: string
     name: string
-    password: string
     createdAt?: Date | string
     updatedAt?: Date | string
     movies?: MovieUncheckedCreateNestedManyWithoutUserInput
@@ -4514,7 +4495,6 @@ export namespace Prisma {
   export type UserUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     movies?: MovieUpdateManyWithoutUserNestedInput
@@ -4524,7 +4504,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     movies?: MovieUncheckedUpdateManyWithoutUserNestedInput
@@ -4534,7 +4513,6 @@ export namespace Prisma {
     id?: number
     email: string
     name: string
-    password: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4542,7 +4520,6 @@ export namespace Prisma {
   export type UserUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4551,7 +4528,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4771,7 +4747,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4784,7 +4759,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4793,7 +4767,6 @@ export namespace Prisma {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    password?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -5437,7 +5410,6 @@ export namespace Prisma {
   export type UserCreateWithoutMoviesInput = {
     email: string
     name: string
-    password: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5446,7 +5418,6 @@ export namespace Prisma {
     id?: number
     email: string
     name: string
-    password: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5494,7 +5465,6 @@ export namespace Prisma {
   export type UserUpdateWithoutMoviesInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5503,7 +5473,6 @@ export namespace Prisma {
     id?: IntFieldUpdateOperationsInput | number
     email?: StringFieldUpdateOperationsInput | string
     name?: StringFieldUpdateOperationsInput | string
-    password?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }

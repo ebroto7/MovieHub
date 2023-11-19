@@ -37,18 +37,45 @@ export const getUserById = async (req: Request, res: Response) => {
 
 }
 
-export const createUser = async (req: Request, res: Response, next: NextFunction) => {
-    const { name, email, password } = req.body
-
+export const createUserOrLogin = async (req: Request, res: Response) => {
     try {
-        const newUser = await prismaClient.user.create({
-            data: { name, email, password }
-        })
-        res.status(201).json(newUser)
+        const { name, email } = req.body;
+
+        if (!name || !email) {
+            throw new Error("Missing fields");
+        }
+        const existingUser = await prismaClient.user.findUnique({
+            where: {
+                email,
+            },
+        });
+        if (existingUser) {
+            res.status(409).json(existingUser);
+        } else {
+            const newUser = await prismaClient.user.create({
+                data: { name, email },
+            });
+
+            res.status(201).json(newUser);
+        }
     } catch (error) {
-        res.status(500).json(error)
+        console.error(error);
+        res.status(500).json(error);
     }
-}
+};
+
+// export const createUser = async (req: Request, res: Response, next: NextFunction) => {
+//     const { name, email, password } = req.body
+
+//     try {
+//         const newUser = await prismaClient.user.create({
+//             data: { name, email, password }
+//         })
+//         res.status(201).json(newUser)
+//     } catch (error) {
+//         res.status(500).json(error)
+//     }
+// }
 
 export const updateUser = async (req: Request, res: Response) => {
     const { userId } = req.params
@@ -68,10 +95,9 @@ export const updateUser = async (req: Request, res: Response) => {
 export const deleteUser = async (req: Request, res: Response) => {
     const { userId } = req.params
 
-
     try {
         await prismaClient.user.delete({
-            where:  convertToType(userId) 
+            where: { id: convertToType(userId) }, 
         })
         res.status(204).send("user deleted")
     } catch (error) {
