@@ -19,10 +19,13 @@ export const getAllMovies = async (req: Request, res: Response) => {
 export const getMovieById = async (req: Request, res: Response) => {
     const { movieId } = req.params
     try {
-        const movie = await prismaClient.movies.findUnique({
+        const movie = await prismaClient.movie.findUnique({
             where: {
                 id: convertToType(movieId),
-            }
+            },
+            include: {
+                Genre: true,
+            },
             
         });
 
@@ -31,6 +34,25 @@ export const getMovieById = async (req: Request, res: Response) => {
         res.status(500).json(error)
     }
 }
+export const getAllMoviesByUserId = async (req: Request, res: Response) => {
+    const { userId } = req.params;
+console.log(">>> ",userId)
+    try {
+        const movies = await prismaClient.movie.findMany({
+            where: {
+                userId: convertToType(userId),
+            },
+            include: {
+                Genre: true,
+            },
+        });
+
+        res.status(200).json(movies);
+    } catch (error) {
+        res.status(500).json({error, message: 'movies not found' });
+    }
+};
+
 export const createMovie = async (req: Request, res: Response) => {
     const { title, description, director, stars, genreId,
         year, poster, duration, rated, comments } = req.body
@@ -55,7 +77,7 @@ export const updateMovie = async (req: Request, res: Response) => {
 
     try {
         const movie = await prismaClient.movie.update({
-            where: { id: movieId },
+            where: { id: convertToType(movieId) }, 
             data: {
                 title, description, director, stars, genreId,
                 year, poster, duration, rated, comments
@@ -72,7 +94,7 @@ export const deleteMovie = async (req: Request, res: Response) => {
 
     try {
         await prismaClient.movie.delete({
-            where: { id: movieId }
+            where: { id: convertToType(movieId) }, 
         })
         res.status(204).send("Movie deleted " + title)
     } catch (error) {
