@@ -1,8 +1,4 @@
 import { Response, Request } from "express";
-import MovieModel from '../model/movie.model'
-import UserModel from "../model/user.model";
-// import { tryCatchHandler } from "../utils/tryCatchHandler";
-import GenreModel from "../model/genre.model";
 import { prismaClient } from "../db/client";
 import { convertToType } from "../utils/convertToType";
 
@@ -26,7 +22,7 @@ export const getMovieById = async (req: Request, res: Response) => {
             include: {
                 Genre: true,
             },
-            
+
         });
 
         res.status(200).json(movie)
@@ -36,7 +32,7 @@ export const getMovieById = async (req: Request, res: Response) => {
 }
 export const getAllMoviesByUserId = async (req: Request, res: Response) => {
     const { userId } = req.params;
-console.log(">>> ",userId)
+    console.log(">>> ", userId)
     try {
         const movies = await prismaClient.movie.findMany({
             where: {
@@ -49,25 +45,43 @@ console.log(">>> ",userId)
 
         res.status(200).json(movies);
     } catch (error) {
-        res.status(500).json({error, message: 'movies not found' });
+        res.status(500).json({ error, message: 'movies not found' });
     }
 };
 
 export const createMovie = async (req: Request, res: Response) => {
-    const { title, description, director, stars, genreId,
-        year, poster, duration, rated, comments } = req.body
+    const { title, description, year, genreId,
+        // director, stars, poster, duration, rated, comments
+    } = req.body
     const { userId } = req.params
     try {
+
+        if (!title) {
+            return res.status(404).json({ message: "title" });
+          }
+          if (!description) {
+            return res.status(404).json({ message: "No description" });
+          }
+      
+          if (!year) {
+            return res.status(404).json({ message: "No year" });
+          }
+      
+          if (!genreId) {
+            return res.status(404).json({ message: "No genreId" });
+          }
         const newMovie = await prismaClient.movie.create({
             data: {
-                title, description, year, director, stars, duration, rated, poster, comments,
-                Genre: { connect: { id: genreId } },
-                User: { connect: { id: userId } }
+                title, description, year,
+            //  director, stars, duration, rated, poster, comments,
+                Genre: { connect: { id: convertToType(genreId) } },
+                User: { connect: { id: convertToType(userId) } }
             }
         })
         res.status(201).json(newMovie)
     } catch (error) {
         res.status(500).json(error)
+        console.error(error)
     }
 }
 export const updateMovie = async (req: Request, res: Response) => {
@@ -77,7 +91,7 @@ export const updateMovie = async (req: Request, res: Response) => {
 
     try {
         const movie = await prismaClient.movie.update({
-            where: { id: convertToType(movieId) }, 
+            where: { id: convertToType(movieId) },
             data: {
                 title, description, director, stars, genreId,
                 year, poster, duration, rated, comments
@@ -94,7 +108,7 @@ export const deleteMovie = async (req: Request, res: Response) => {
 
     try {
         await prismaClient.movie.delete({
-            where: { id: convertToType(movieId) }, 
+            where: { id: convertToType(movieId) },
         })
         res.status(204).send("Movie deleted " + title)
     } catch (error) {

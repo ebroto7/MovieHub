@@ -1,6 +1,4 @@
 import { Response, Request, NextFunction } from "express";
-import UserModel from "../model/user.model";
-import { IUserDocument } from "../model/user.model";
 import { prismaClient } from "../db/client"
 import { convertToType } from "../utils/convertToType";
 
@@ -38,8 +36,9 @@ export const getUserById = async (req: Request, res: Response) => {
 }
 
 export const createUserOrLogin = async (req: Request, res: Response) => {
+    const { name, email } = req.body;
+
     try {
-        const { name, email } = req.body;
 
         if (!name || !email) {
             throw new Error("Missing fields");
@@ -51,7 +50,6 @@ export const createUserOrLogin = async (req: Request, res: Response) => {
         });
         if (existingUser) {
             res.status(409).json(existingUser);
-            // res.status(409).json({existingUser, message: "this user already exists"});
         } else {
             const newUser = await prismaClient.user.create({
                 data: { name, email },
@@ -100,19 +98,9 @@ export const deleteUser = async (req: Request, res: Response) => {
         await prismaClient.user.delete({
             where: { id: convertToType(userId) }, 
         })
-        res.status(204).send("user deleted")
+        res.status(204).json({mesage: "User succesfully deleted"})
     } catch (error) {
         res.status(500).json(error)
     }
 }
 
-
-const tryCatchHandler = (req: Request, res: Response, succesStatus: number, getData: IUserDocument | IUserDocument[] | null) => {
-    try {
-        const data = getData
-        res.status(succesStatus).json(data)
-
-    } catch (error) {
-        res.status(500).json(error)
-    }
-}
