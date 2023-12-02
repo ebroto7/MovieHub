@@ -34,12 +34,12 @@ model Movie {
     description String @unique
     year        String
 
-    // director String?
-    // stars    String?
-    // duration String?
-    // rated    String?
-    // poster   String?  @unique
-    // comments String[]
+    director String?
+    stars    String?
+    duration String?
+    rated    String?
+    poster   String?  @unique
+    comments String[]
 
     genreId Int?
     Genre   Genre? @relation(fields: [genreId], references: [id])

@@ -2091,6 +2091,11 @@ export namespace Prisma {
     title: string | null
     description: string | null
     year: string | null
+    director: string | null
+    stars: string | null
+    duration: string | null
+    rated: string | null
+    poster: string | null
     genreId: number | null
     userId: number | null
     createdAt: Date | null
@@ -2102,6 +2107,11 @@ export namespace Prisma {
     title: string | null
     description: string | null
     year: string | null
+    director: string | null
+    stars: string | null
+    duration: string | null
+    rated: string | null
+    poster: string | null
     genreId: number | null
     userId: number | null
     createdAt: Date | null
@@ -2113,6 +2123,12 @@ export namespace Prisma {
     title: number
     description: number
     year: number
+    director: number
+    stars: number
+    duration: number
+    rated: number
+    poster: number
+    comments: number
     genreId: number
     userId: number
     createdAt: number
@@ -2138,6 +2154,11 @@ export namespace Prisma {
     title?: true
     description?: true
     year?: true
+    director?: true
+    stars?: true
+    duration?: true
+    rated?: true
+    poster?: true
     genreId?: true
     userId?: true
     createdAt?: true
@@ -2149,6 +2170,11 @@ export namespace Prisma {
     title?: true
     description?: true
     year?: true
+    director?: true
+    stars?: true
+    duration?: true
+    rated?: true
+    poster?: true
     genreId?: true
     userId?: true
     createdAt?: true
@@ -2160,6 +2186,12 @@ export namespace Prisma {
     title?: true
     description?: true
     year?: true
+    director?: true
+    stars?: true
+    duration?: true
+    rated?: true
+    poster?: true
+    comments?: true
     genreId?: true
     userId?: true
     createdAt?: true
@@ -2258,6 +2290,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director: string | null
+    stars: string | null
+    duration: string | null
+    rated: string | null
+    poster: string | null
+    comments: string[]
     genreId: number | null
     userId: number
     createdAt: Date
@@ -2288,6 +2326,12 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     year?: boolean
+    director?: boolean
+    stars?: boolean
+    duration?: boolean
+    rated?: boolean
+    poster?: boolean
+    comments?: boolean
     genreId?: boolean
     userId?: boolean
     createdAt?: boolean
@@ -2301,6 +2345,12 @@ export namespace Prisma {
     title?: boolean
     description?: boolean
     year?: boolean
+    director?: boolean
+    stars?: boolean
+    duration?: boolean
+    rated?: boolean
+    poster?: boolean
+    comments?: boolean
     genreId?: boolean
     userId?: boolean
     createdAt?: boolean
@@ -2324,6 +2374,12 @@ export namespace Prisma {
       title: string
       description: string
       year: string
+      director: string | null
+      stars: string | null
+      duration: string | null
+      rated: string | null
+      poster: string | null
+      comments: string[]
       genreId: number | null
       userId: number
       createdAt: Date
@@ -2729,6 +2785,12 @@ export namespace Prisma {
     readonly title: FieldRef<"Movie", 'String'>
     readonly description: FieldRef<"Movie", 'String'>
     readonly year: FieldRef<"Movie", 'String'>
+    readonly director: FieldRef<"Movie", 'String'>
+    readonly stars: FieldRef<"Movie", 'String'>
+    readonly duration: FieldRef<"Movie", 'String'>
+    readonly rated: FieldRef<"Movie", 'String'>
+    readonly poster: FieldRef<"Movie", 'String'>
+    readonly comments: FieldRef<"Movie", 'String[]'>
     readonly genreId: FieldRef<"Movie", 'Int'>
     readonly userId: FieldRef<"Movie", 'Int'>
     readonly createdAt: FieldRef<"Movie", 'DateTime'>
@@ -4086,6 +4148,12 @@ export namespace Prisma {
     title: 'title',
     description: 'description',
     year: 'year',
+    director: 'director',
+    stars: 'stars',
+    duration: 'duration',
+    rated: 'rated',
+    poster: 'poster',
+    comments: 'comments',
     genreId: 'genreId',
     userId: 'userId',
     createdAt: 'createdAt',
@@ -4258,6 +4326,12 @@ export namespace Prisma {
     title?: StringFilter<"Movie"> | string
     description?: StringFilter<"Movie"> | string
     year?: StringFilter<"Movie"> | string
+    director?: StringNullableFilter<"Movie"> | string | null
+    stars?: StringNullableFilter<"Movie"> | string | null
+    duration?: StringNullableFilter<"Movie"> | string | null
+    rated?: StringNullableFilter<"Movie"> | string | null
+    poster?: StringNullableFilter<"Movie"> | string | null
+    comments?: StringNullableListFilter<"Movie">
     genreId?: IntNullableFilter<"Movie"> | number | null
     userId?: IntFilter<"Movie"> | number
     createdAt?: DateTimeFilter<"Movie"> | Date | string
@@ -4271,6 +4345,12 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     year?: SortOrder
+    director?: SortOrderInput | SortOrder
+    stars?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    rated?: SortOrderInput | SortOrder
+    poster?: SortOrderInput | SortOrder
+    comments?: SortOrder
     genreId?: SortOrderInput | SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -4283,23 +4363,35 @@ export namespace Prisma {
     id?: number
     title?: string
     description?: string
+    poster?: string
     AND?: MovieWhereInput | MovieWhereInput[]
     OR?: MovieWhereInput[]
     NOT?: MovieWhereInput | MovieWhereInput[]
     year?: StringFilter<"Movie"> | string
+    director?: StringNullableFilter<"Movie"> | string | null
+    stars?: StringNullableFilter<"Movie"> | string | null
+    duration?: StringNullableFilter<"Movie"> | string | null
+    rated?: StringNullableFilter<"Movie"> | string | null
+    comments?: StringNullableListFilter<"Movie">
     genreId?: IntNullableFilter<"Movie"> | number | null
     userId?: IntFilter<"Movie"> | number
     createdAt?: DateTimeFilter<"Movie"> | Date | string
     updatedAt?: DateTimeFilter<"Movie"> | Date | string
     Genre?: XOR<GenreNullableRelationFilter, GenreWhereInput> | null
     User?: XOR<UserNullableRelationFilter, UserWhereInput> | null
-  }, "id" | "title" | "description">
+  }, "id" | "title" | "description" | "poster">
 
   export type MovieOrderByWithAggregationInput = {
     id?: SortOrder
     title?: SortOrder
     description?: SortOrder
     year?: SortOrder
+    director?: SortOrderInput | SortOrder
+    stars?: SortOrderInput | SortOrder
+    duration?: SortOrderInput | SortOrder
+    rated?: SortOrderInput | SortOrder
+    poster?: SortOrderInput | SortOrder
+    comments?: SortOrder
     genreId?: SortOrderInput | SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -4319,6 +4411,12 @@ export namespace Prisma {
     title?: StringWithAggregatesFilter<"Movie"> | string
     description?: StringWithAggregatesFilter<"Movie"> | string
     year?: StringWithAggregatesFilter<"Movie"> | string
+    director?: StringNullableWithAggregatesFilter<"Movie"> | string | null
+    stars?: StringNullableWithAggregatesFilter<"Movie"> | string | null
+    duration?: StringNullableWithAggregatesFilter<"Movie"> | string | null
+    rated?: StringNullableWithAggregatesFilter<"Movie"> | string | null
+    poster?: StringNullableWithAggregatesFilter<"Movie"> | string | null
+    comments?: StringNullableListFilter<"Movie">
     genreId?: IntNullableWithAggregatesFilter<"Movie"> | number | null
     userId?: IntWithAggregatesFilter<"Movie"> | number
     createdAt?: DateTimeWithAggregatesFilter<"Movie"> | Date | string
@@ -4438,6 +4536,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     Genre?: GenreCreateNestedOneWithoutMoviesInput
@@ -4449,6 +4553,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     genreId?: number | null
     userId: number
     createdAt?: Date | string
@@ -4459,6 +4569,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Genre?: GenreUpdateOneWithoutMoviesNestedInput
@@ -4470,6 +4586,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     genreId?: NullableIntFieldUpdateOperationsInput | number | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4481,6 +4603,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     genreId?: number | null
     userId: number
     createdAt?: Date | string
@@ -4491,6 +4619,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4500,6 +4634,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     genreId?: NullableIntFieldUpdateOperationsInput | number | null
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -4683,6 +4823,29 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
+  export type StringNullableListFilter<$PrismaModel = never> = {
+    equals?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    has?: string | StringFieldRefInput<$PrismaModel> | null
+    hasEvery?: string[] | ListStringFieldRefInput<$PrismaModel>
+    hasSome?: string[] | ListStringFieldRefInput<$PrismaModel>
+    isEmpty?: boolean
+  }
+
   export type IntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -4714,6 +4877,12 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     year?: SortOrder
+    director?: SortOrder
+    stars?: SortOrder
+    duration?: SortOrder
+    rated?: SortOrder
+    poster?: SortOrder
+    comments?: SortOrder
     genreId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -4731,6 +4900,11 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     year?: SortOrder
+    director?: SortOrder
+    stars?: SortOrder
+    duration?: SortOrder
+    rated?: SortOrder
+    poster?: SortOrder
     genreId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -4742,6 +4916,11 @@ export namespace Prisma {
     title?: SortOrder
     description?: SortOrder
     year?: SortOrder
+    director?: SortOrder
+    stars?: SortOrder
+    duration?: SortOrder
+    rated?: SortOrder
+    poster?: SortOrder
     genreId?: SortOrder
     userId?: SortOrder
     createdAt?: SortOrder
@@ -4752,6 +4931,24 @@ export namespace Prisma {
     id?: SortOrder
     genreId?: SortOrder
     userId?: SortOrder
+  }
+
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type IntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -4857,6 +5054,10 @@ export namespace Prisma {
     deleteMany?: MovieScalarWhereInput | MovieScalarWhereInput[]
   }
 
+  export type MovieCreatecommentsInput = {
+    set: string[]
+  }
+
   export type GenreCreateNestedOneWithoutMoviesInput = {
     create?: XOR<GenreCreateWithoutMoviesInput, GenreUncheckedCreateWithoutMoviesInput>
     connectOrCreate?: GenreCreateOrConnectWithoutMoviesInput
@@ -4867,6 +5068,15 @@ export namespace Prisma {
     create?: XOR<UserCreateWithoutMoviesInput, UserUncheckedCreateWithoutMoviesInput>
     connectOrCreate?: UserCreateOrConnectWithoutMoviesInput
     connect?: UserWhereUniqueInput
+  }
+
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+  }
+
+  export type MovieUpdatecommentsInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
   export type GenreUpdateOneWithoutMoviesNestedInput = {
@@ -5033,6 +5243,20 @@ export namespace Prisma {
     _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+  }
+
   export type NestedIntNullableFilter<$PrismaModel = never> = {
     equals?: number | IntFieldRefInput<$PrismaModel> | null
     in?: number[] | ListIntFieldRefInput<$PrismaModel> | null
@@ -5042,6 +5266,23 @@ export namespace Prisma {
     gt?: number | IntFieldRefInput<$PrismaModel>
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
+  }
+
+  export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
   }
 
   export type NestedIntNullableWithAggregatesFilter<$PrismaModel = never> = {
@@ -5075,6 +5316,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     Genre?: GenreCreateNestedOneWithoutMoviesInput
@@ -5085,6 +5332,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     genreId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -5124,6 +5377,12 @@ export namespace Prisma {
     title?: StringFilter<"Movie"> | string
     description?: StringFilter<"Movie"> | string
     year?: StringFilter<"Movie"> | string
+    director?: StringNullableFilter<"Movie"> | string | null
+    stars?: StringNullableFilter<"Movie"> | string | null
+    duration?: StringNullableFilter<"Movie"> | string | null
+    rated?: StringNullableFilter<"Movie"> | string | null
+    poster?: StringNullableFilter<"Movie"> | string | null
+    comments?: StringNullableListFilter<"Movie">
     genreId?: IntNullableFilter<"Movie"> | number | null
     userId?: IntFilter<"Movie"> | number
     createdAt?: DateTimeFilter<"Movie"> | Date | string
@@ -5222,6 +5481,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     User?: UserCreateNestedOneWithoutMoviesInput
@@ -5232,6 +5497,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -5268,6 +5539,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     genreId?: number | null
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -5277,6 +5554,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     Genre?: GenreUpdateOneWithoutMoviesNestedInput
@@ -5287,6 +5570,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     genreId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5297,6 +5586,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     genreId?: NullableIntFieldUpdateOperationsInput | number | null
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5307,6 +5602,12 @@ export namespace Prisma {
     title: string
     description: string
     year: string
+    director?: string | null
+    stars?: string | null
+    duration?: string | null
+    rated?: string | null
+    poster?: string | null
+    comments?: MovieCreatecommentsInput | string[]
     userId: number
     createdAt?: Date | string
     updatedAt?: Date | string
@@ -5316,6 +5617,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     User?: UserUpdateOneWithoutMoviesNestedInput
@@ -5326,6 +5633,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
@@ -5336,6 +5649,12 @@ export namespace Prisma {
     title?: StringFieldUpdateOperationsInput | string
     description?: StringFieldUpdateOperationsInput | string
     year?: StringFieldUpdateOperationsInput | string
+    director?: NullableStringFieldUpdateOperationsInput | string | null
+    stars?: NullableStringFieldUpdateOperationsInput | string | null
+    duration?: NullableStringFieldUpdateOperationsInput | string | null
+    rated?: NullableStringFieldUpdateOperationsInput | string | null
+    poster?: NullableStringFieldUpdateOperationsInput | string | null
+    comments?: MovieUpdatecommentsInput | string[]
     userId?: IntFieldUpdateOperationsInput | number
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string

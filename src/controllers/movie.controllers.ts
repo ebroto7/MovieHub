@@ -51,7 +51,7 @@ export const getAllMoviesByUserId = async (req: Request, res: Response) => {
 
 export const createMovie = async (req: Request, res: Response) => {
     const { title, description, year, genreId,
-        // director, stars, poster, duration, rated, comments
+        director, stars, poster, duration, rated, comments
     } = req.body
     const { userId } = req.params
     try {
@@ -73,7 +73,7 @@ export const createMovie = async (req: Request, res: Response) => {
         const newMovie = await prismaClient.movie.create({
             data: {
                 title, description, year,
-            //  director, stars, duration, rated, poster, comments,
+             director, stars, duration, rated, poster, comments,
                 Genre: { connect: { id: convertToType(genreId) } },
                 User: { connect: { id: convertToType(userId) } }
             }
