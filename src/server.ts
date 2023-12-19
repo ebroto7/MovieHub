@@ -2,6 +2,7 @@ import express from 'express';
 import userRoutes from './routes/user.routes';
 import movieRoutes from './routes/movie.routes';
 import genreRoutes from './routes/genre.routes';
+import {jwtCheckMiddleware} from './middleware/checkJwt.middleware'
 const cors = require("cors")
 
 const app = express()

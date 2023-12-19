@@ -7,6 +7,7 @@ import { getAllUsers,
          createUserOrLogin
         } from '../controllers/user.controllers'
 import { validateName } from "../middleware/validateName.middleware";
+import {jwtCheckMiddleware} from "../middleware/checkJwt.middleware"
 
 
 const userRoutes = Router()      
@@ -14,8 +15,8 @@ const userRoutes = Router()
 userRoutes.get("/", getAllUsers)
 userRoutes.get("/:userId", getUserById)
 
-userRoutes.patch("/:userId", updateUser)
-userRoutes.delete("/:userId", deleteUser)
+userRoutes.patch("/:userId",jwtCheckMiddleware, updateUser)
+userRoutes.delete("/:userId", jwtCheckMiddleware, deleteUser)
 // userRoutes.post("/", validateName, createUser)
 
 userRoutes.post("/", createUserOrLogin);

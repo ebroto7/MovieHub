@@ -21,8 +21,7 @@ export const getMovieById = async (req: Request, res: Response) => {
             },
             include: {
                 Genre: true,
-            },
-
+            }
         });
 
         res.status(200).json(movie)
@@ -30,9 +29,26 @@ export const getMovieById = async (req: Request, res: Response) => {
         res.status(500).json(error)
     }
 }
+
+export const getMoviesByGenre = async (req: Request, res: Response) => {
+    const { genreId } = req.params
+    try {
+        const movies = await prismaClient.movie.findMany({
+            where: {
+                genreId: convertToType(genreId),
+            },
+        })
+        res.status(200).json(movies);
+
+    } catch (error) {
+        res.status(500).json({ error, message: 'movies not found' });
+    }
+}
+
+
+
 export const getAllMoviesByUserId = async (req: Request, res: Response) => {
     const { userId } = req.params;
-    console.log(">>> ", userId)
     try {
         const movies = await prismaClient.movie.findMany({
             where: {
