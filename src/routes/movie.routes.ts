@@ -16,7 +16,7 @@ movieRoutes.get("/:movieId", getMovieById)
 movieRoutes.get("/user/:userId", getAllMoviesByUserId);
 movieRoutes.get("/genre/:genreId", getMoviesByGenre);
 
-movieRoutes.post("/:userId", jwtCheckMiddleware, createMovie)
+movieRoutes.post("/:userId", createMovie)
 
 movieRoutes.patch("/:movieId", jwtCheckMiddleware, updateMovie)
 movieRoutes.delete("/:movieId", jwtCheckMiddleware, deleteMovie)

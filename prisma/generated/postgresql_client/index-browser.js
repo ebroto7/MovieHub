@@ -125,7 +125,6 @@ exports.Prisma.MovieScalarFieldEnum = {
   duration: 'duration',
   rated: 'rated',
   poster: 'poster',
-  comments: 'comments',
   genreId: 'genreId',
   userId: 'userId',
   createdAt: 'createdAt',
@@ -135,6 +134,17 @@ exports.Prisma.MovieScalarFieldEnum = {
 exports.Prisma.GenreScalarFieldEnum = {
   id: 'id',
   name: 'name',
+  createdAt: 'createdAt',
+  updatedAt: 'updatedAt'
+};
+
+exports.Prisma.CommentScalarFieldEnum = {
+  id: 'id',
+  title: 'title',
+  description: 'description',
+  ratting: 'ratting',
+  movieId: 'movieId',
+  userId: 'userId',
   createdAt: 'createdAt',
   updatedAt: 'updatedAt'
 };
@@ -158,7 +168,8 @@ exports.Prisma.NullsOrder = {
 exports.Prisma.ModelName = {
   User: 'User',
   Movie: 'Movie',
-  Genre: 'Genre'
+  Genre: 'Genre',
+  Comment: 'Comment'
 };
 
 /**

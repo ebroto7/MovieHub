@@ -7,7 +7,8 @@ export const getAllUsers = async (req: Request, res: Response) => {
     try {
         const allUsers = await prismaClient.user.findMany({
             include: {
-                movies: true
+                movies: true,
+                comments: true
             }
         })
         res.status(200).json(allUsers)
@@ -21,13 +22,14 @@ export const getUserById = async (req: Request, res: Response) => {
     const { userId } = req.params
 
     try {
-        const allUsers = await prismaClient.user.findUnique({
-            where: { id: convertToType(userId) }, 
+        const user = await prismaClient.user.findUnique({
+            where: { id: convertToType(userId) },
             include: {
-                movies: true
+                movies: true,
+                comments: true
             }
         })
-        res.status(200).json(allUsers)
+        res.status(200).json(user)
 
     } catch (error) {
         res.status(500).json(error)
@@ -82,7 +84,7 @@ export const updateUser = async (req: Request, res: Response) => {
 
     try {
         const user = await prismaClient.user.update({
-            where: { id: convertToType(userId) }, 
+            where: { id: convertToType(userId) },
             data: { name, email, movies }
         })
         res.status(201).json(user)
@@ -96,9 +98,9 @@ export const deleteUser = async (req: Request, res: Response) => {
 
     try {
         await prismaClient.user.delete({
-            where: { id: convertToType(userId) }, 
+            where: { id: convertToType(userId) },
         })
-        res.status(204).json({mesage: "User succesfully deleted"})
+        res.status(204).json({ mesage: "User succesfully deleted" })
     } catch (error) {
         res.status(500).json(error)
     }

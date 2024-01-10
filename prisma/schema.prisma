@@ -20,6 +20,7 @@ model User {
     name  String @unique
 
     movies Movie[]
+    comments Comment[]
 
     createdAt DateTime @default(now())
     updatedAt DateTime @updatedAt
@@ -38,8 +39,8 @@ model Movie {
     stars    String?
     duration String?
     rated    String?
-    poster   String?  @unique
-    comments String[]
+    poster   String?   @unique
+    comments Comment[]
 
     genreId Int?
     Genre   Genre? @relation(fields: [genreId], references: [id])
@@ -64,4 +65,24 @@ model Genre {
     updatedAt DateTime @updatedAt
 
     @@map("genres")
+}
+
+model Comment {
+    id Int @id @default(autoincrement()) @map("_id")
+
+    title        String
+    description String
+    ratting     Int
+
+    movieId Int
+    Movie Movie @relation(fields: [movieId], references: [id])
+
+    userId Int
+    User User @relation(fields: [userId], references: [id])
+
+
+    createdAt DateTime @default(now())
+    updatedAt DateTime @updatedAt
+
+    @@map("comments")
 }

@@ -5,7 +5,11 @@ import { convertToType } from "../utils/convertToType";
 export const getAllMovies = async (req: Request, res: Response) => {
 
     try {
-        const movies = await prismaClient.movie.findMany()
+        const movies = await prismaClient.movie.findMany(
+            {
+                select: {id: true}
+            }
+        )
 
         res.status(201).json(movies)
     } catch (error) {
@@ -21,6 +25,7 @@ export const getMovieById = async (req: Request, res: Response) => {
             },
             include: {
                 Genre: true,
+                comments: true
             }
         });
 
