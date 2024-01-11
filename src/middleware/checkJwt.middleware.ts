@@ -5,3 +5,4 @@ export const jwtCheckMiddleware = auth({
   audience: config.auth0.audience,
   issuerBaseURL: config.auth0.issuer,
 });
+
