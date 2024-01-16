@@ -51,7 +51,7 @@ export const createUserOrLogin = async (req: Request, res: Response) => {
             },
         });
         if (existingUser) {
-            res.status(409).json(existingUser);
+            res.status(201).json(existingUser)
         } else {
             const newUser = await prismaClient.user.create({
                 data: { name, email },
