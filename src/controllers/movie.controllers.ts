@@ -28,7 +28,7 @@ export const getMovieById = async (req: Request, res: Response) => {
                 comments: true
             }
         });
-
+        if (movie == null) res.status(404).json({message: 'movie not found' })
         res.status(200).json(movie)
     } catch (error) {
         res.status(500).json(error)
